@@ -3,7 +3,7 @@ from .similarity import (
     snf_affinity,
     multi_modal_similarity,
     probability_matrix,
-    # partial_mm_similarity,
+    partial_mm_similarity,
 )
 
 from .threshold import (
