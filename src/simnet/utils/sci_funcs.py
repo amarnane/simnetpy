@@ -2,6 +2,8 @@ import warnings
 
 import numpy as np
 import pandas as pd
+from sklearn.utils import Bunch
+
 
 def check_rng(rng):
     if rng is None:
@@ -58,3 +60,6 @@ def nanmean(x, allnanvalue=np.nan, **npkwds):
         y=np.nanmean(x, **npkwds)
         y=np.nan_to_num(y, nan=allnanvalue)  
     return y
+
+def dict2Bunch(datadict):
+    return Bunch(**datadict)
