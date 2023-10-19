@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.utils import Bunch
 
-from .single_mod import equal_split, mixed_multi_guassian, mixed_categorical_clusters
+from .generator import equal_split, mixed_multi_guassian, mixed_categorical_clusters
 from .. import utils
 
 def shuffle_within_groups(y, rng=None):
@@ -72,12 +72,12 @@ def split_clusters(y, n, nb, shuffle=True, rng=None):
 
     return ysplit
 
-def fmerge(y, n, fixed=False, lower=None, rng=None):
+def fmerge(y, n, fixed=False, nlower=None, rng=None):
     # if rng is None:
     #     rng = np.random.default_rng()
     rng = utils.check_rng(rng)
 
-    if lower is None:
+    if nlower is None:
         nlower = n//2
     if fixed:
         ns = nlower
@@ -86,12 +86,12 @@ def fmerge(y, n, fixed=False, lower=None, rng=None):
     yi = merge_clusters(y,n,ns, rng=rng)
     return yi
 
-def fsplit(y, n, fixed=False, upper=None, rng=None):
+def fsplit(y, n, fixed=False, nupper=None, rng=None):
     # if rng is None:
     #     rng = np.random.default_rng()
     rng = utils.check_rng(rng)
 
-    if upper is None:
+    if nupper is None:
         nupper = 2*n
     if fixed:
         nl = nupper
