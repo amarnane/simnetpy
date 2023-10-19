@@ -56,7 +56,7 @@ def group_by_cluster_layout(g, y_group, nclstr_factor=0.1, clstr_size_factor=1, 
 
     return layout
 
-def plot_by_cluster(g, y_color, y_group, nclstr_factor=0.1, clstr_size_factor=0.2, base=0.1, layout=None, markersize=5, scale_marker=False, edge_alpha=0.5, edge_width=0.5, node_alpha=0.3, ax=None, style_dict=None):
+def plot_by_cluster(g, y_color, y_group, nclstr_factor=0.1, clstr_size_factor=0.2, layout=None, markersize=5, scale_marker=False, edge_alpha=0.5, edge_width=0.5, node_alpha=0.3, ax=None, style_dict=None, **kwds):
     if layout is None:
         layout = group_by_cluster_layout(g, y_group, nclstr_factor=nclstr_factor, clstr_size_factor=clstr_size_factor)
     
@@ -76,9 +76,9 @@ def plot_by_cluster(g, y_color, y_group, nclstr_factor=0.1, clstr_size_factor=0.
         idx = y_group==c
         c = [f'C{int(j)}' for j in y_color[idx]]
         if scale_marker:
-            ax.scatter(x=L[idx,0], y=L[idx,1], c=c, s=dd[idx], alpha=node_alpha, marker='.', linewidths=0, zorder=10)
+            ax.scatter(x=L[idx,0], y=L[idx,1], c=c, s=dd[idx], alpha=node_alpha, marker='.', linewidths=0, **kwds)
         else:
-            ax.scatter(x=L[idx,0], y=L[idx,1], c=c, alpha=node_alpha, s=markersize**2, marker='.', linewidths=0, zorder=10)
+            ax.scatter(x=L[idx,0], y=L[idx,1], c=c, alpha=node_alpha, s=markersize**2, marker='.', linewidths=0, **kwds)
 
     if style_dict is None:
         style_dict = {
