@@ -25,4 +25,5 @@ from .sci_funcs import (
     random_sample,
     nanmean,
     non_nan_indices,
+    dict2Bunch,
 )
