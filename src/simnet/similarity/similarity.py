@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import scipy.spatial.distance as dist
 from scipy import stats
-
 import snf
 
 from .. import utils
@@ -116,7 +115,52 @@ def snf_affinity(X, metric='euclidean', K=20, mu=0.5):
     S = snf.make_affinity(X, K=K, metric=metric, mu=mu)
     return S
 
-def multi_modal_similarity(data, metric, norm=True, snf_aff=False, K=20, mu=0.5):
+
+def multi_modal_similarity(data, N, method, idxmap=None, norm=True):
+    """Compute pairwise similarity for each data modality
+    Uses same metric on each modality. 
+
+    Note all matrices in data must be NxN if idxmap not specified
+    Args:
+        data (dict): dictionary of Nmodality feature matrices (N x d_i np.ndarrays)
+        N (int): number of individuals in pairwise calculation
+        idxmap (dict): dictionary contain index of each matrix in larger set
+
+    Returns:
+        np.ndarray: (Nmodality, N, N) pairwise similarity matrix
+    """
+    Nm = len(data) # number modalities
+    S = np.empty((Nm,N,N), dtype=np.float32)
+    S.fill(np.nan)
+
+    for i,(key, X) in enumerate(data.items()):
+        D = pairwise_sim(X,method, norm=norm)
+        if idxmap is not None:
+            idx = idxmap[key]
+            j,k = np.meshgrid(idx,idx)
+            S[i, j, k] = D 
+        else:
+            S[i,:,:] = D
+    return S
+
+def partial_mm_similarity(data, metric, norm=True, snf_aff=False, K=20, mu=0.5):
+    """Calculate multi-modal similarity where rows in certain modalities might be mssing. 
+    Can use normal distance metric of Affinity proposed in SNF (Similarity Network Fusion).
+
+    Note: Function returns a m x N x N dissimilarity matrix. If affinity then S = -(Affinity Matrix)
+
+    Args:
+        data (list): array of data matrices for each modality. Each array should be N x d. 
+                    if data missing include NaN rows in input.
+        metric (_type_): metric to use in distance calculation.
+        norm (bool, optional): _description_. Defaults to True.
+        snf_aff (bool, optional): _description_. Defaults to False.
+        K (int, optional): _description_. Defaults to 20.
+        mu (float, optional): _description_. Defaults to 0.5.
+
+    Returns:
+        _type_: _description_
+    """
     Nm = len(data)
     N, d = data[0].shape
     S = np.empty((Nm, N, N))
@@ -124,7 +168,7 @@ def multi_modal_similarity(data, metric, norm=True, snf_aff=False, K=20, mu=0.5)
     for i, X in enumerate(data):
         idx = utils.non_nan_indices(X)
         if snf_aff:
-            D = pairwise_sim(X[idx,:], metric=metric, K=K, mu=mu)    
+            D = -snf_affinity(X[idx,:], metric=metric, K=K, mu=mu)    
         else:
             D = pairwise_sim(X[idx,:], metric, norm=norm)
         j,k = np.meshgrid(idx,idx)
