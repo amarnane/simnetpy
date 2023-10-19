@@ -1,4 +1,4 @@
-from .single_mod import (
+from .generator import (
     cluster_centers,
     multivariate_guassian,
     mixed_multi_guassian,
