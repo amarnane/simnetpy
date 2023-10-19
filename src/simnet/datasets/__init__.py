@@ -15,7 +15,9 @@ from .single_mod import (
     network_plot,
 )
 
-from .mutli_mod import (
+from .multi_mod import (
     multi_mod_data,
     load_mixed_cluster_data,
+    merge_clusters,
+    split_clusters,
 )
