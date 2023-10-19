@@ -3,8 +3,8 @@ import pandas as pd
 import numpy as np
 import scipy.sparse as sp
 import igraph as ig
-# from ..plotting import plot_degree_dist
-
+from ..plotting import plot_degree_dist
+# from ..clustering import run_cluster_method
 
 
 
@@ -93,54 +93,6 @@ def cluster_comparison(clist):
             ddict[(i,j)] = compare_clusters(c1, c2)
     return ddict
 
-
-# # NOTE: Still have issue here where passing functions doesn't really work.
-# # We rely on gg being defined. And being the same as the inputted graph.
-# # not sure how to call methods without having the method defined.
-# # try using getattr?
-# def run_communities(gg, community_funcs=None):
-#     if community_funcs is None:
-#         community_funcs = {'fastgreedy': {'f': gg.community_fastgreedy, 'kwargs':{'weights':None}}, 
-#         'infomap': {'f':gg.community_infomap, 'kwargs':{'trials':10}},
-#         # 'leading_eigen_naive': {'f':gg.community_leading_eigenvector_naive, 'kwargs':{'return_merges':False}}, # might be issue. not sure if kwarg valid for this as well as naive
-#         'leading_eigen': {'f': gg.community_leading_eigenvector, 'kwargs':{'weights': None, 'arpack_options':ig._igraph.ARPACKOptions(maxiter=30000)}},
-#         'label_prop': {'f':gg.community_label_propagation, 'kwargs':{'weights':None}},
-#         'multilevel': {'f':gg.community_multilevel, 'kwargs':{'return_levels':False}},
-#         # 'edge_betweenness': {'f':gg.community_edge_betweenness, 'kwargs':{'directed':False}},
-#         # 'spinglass':{'f':gg.community_spinglass, 'kwargs':{'weights':None}},
-#         'walktrap':{'f':gg.community_walktrap, 'kwargs':{'steps':4}},
-#         'leiden':{'f':gg.community_leiden,'kwargs':{'n_iterations':-1, 'objective_function':'modularity', 'resolution_parameter':1.0}} # -1 so runs until converges, 'cpm' is variant of modularity,
-#         }
-#     ddict = {}
-#     for k, fdict in community_funcs.items():
-#         print(f'On func: {k}')
-
-#         # call detection method with arguments as specified in community_func dict
-#         f = fdict['f']
-#         kwargs = fdict['kwargs']
-    
-#         start = time.time()
-#         try:
-#             clust = f(**kwargs)
-#         except Exception as e:
-#             print(e)
-#             print(k)
-#             clust=None
-#             ddict[k] = {'size':np.nan, 'modularity':np.nan, 'clustering':None, 'time':np.nan}
-#             continue
-
-#         end = time.time()
-
-#         # some methods return a dendrogram
-#         if isinstance(clust, ig.clustering.VertexDendrogram):
-#             print(clust.summary())
-#             clust = clust.as_clustering()
-
-#         # stats to store
-#         num = len(clust)
-#         mod = clust.modularity
-#         ddict[k] = {'size':num, 'modularity':mod, 'clustering':clust, 'time':(end - start)}
-#     return ddict
 
 
 def ig_graphinfo(gg, community_funcs=None):
@@ -314,9 +266,9 @@ class Igraph(ig.Graph):
         X = np.array(X).T # Transpose to have shape n x d
         return X
 
-    # def plot_degree_dist(self, logbinsize=0.1, LOG_ONLY=False):
-    #     degree = self.degree()
-    #     # plot_degree_dist(degree_dist=degree, logbinsize=logbinsize, LOG_ONLY=LOG_ONLY)
+    def plot_degree_dist(self, logbinsize=0.1, LOG_ONLY=False):
+        degree = self.degree()
+        plot_degree_dist(degree_dist=degree, logbinsize=logbinsize, LOG_ONLY=LOG_ONLY)
 
     def plottable(self, mode='undirected'):
         A = self.get_adjacency_sparse()
