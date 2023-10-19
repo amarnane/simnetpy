@@ -15,12 +15,10 @@ Python Package for the creation and analysis of similarity networks.
     ├── docs
     ├── notebooks
     ├── scripts 
-    └── src/phd_thesis
+    └── src/simnet
         ├── clustering
-        ├── data
-        ├── igraph
-        ├── plotting
-        ├── prediction
+        ├── datasets
+        ├── graph
         ├── similarity
         └── utils 
 -->
@@ -53,4 +51,4 @@ The simplest method for python users is to make use of a conda environment, inst
 ```
 conda install -c conda-forge graph-tool
 ```
-Note: this will not work on Windows. Alternative (conda independent) solutions can be found on the [Graph Tool Website](https://graph-tool.skewed.de/)
+Note: this will not work on Windows. Alternative (conda independent) solutions can be found on the [Graph Tool Website](https://git.skewed.de/count0/graph-tool/-/wikis/installation-instructions#installing-via-conda)
