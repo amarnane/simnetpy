@@ -1,6 +1,25 @@
 import numpy as np
-import graph_tool.all as gt
 from sklearn.cluster import KMeans
+
+# import graph_tool.all as gt
+import warnings
+warnings.simplefilter("always", ImportWarning)
+def custom_import_warning(message):
+    warnings.warn(message, ImportWarning)
+    
+try:
+    import graph_tool.all as gt
+except ImportError:
+    gt='NOT INSTALLED'
+    custom_import_warning("The graph-tool module is not installed. SBM clustering unavailable. Use\n\t conda install "+\
+                "-c conda-forge graph-tool\nto install in a conda environment."+\
+                " See https://git.skewed.de/count0/graph-tool/-/wikis/installation-instructions "+\
+                "for help.")
+#     warnings.warn("The graph-tool module is not installed. SBM clustering unavailable. Use\n\t conda install "+\
+#                 "-c conda-forge graph-tool\nto install in a conda environment."+\
+#                 " See https://git.skewed.de/count0/graph-tool/-/wikis/installation-instructions "+\
+#                 "for help.", ImportWarning)
+# # except ModuleNotFoundError:
 
 from .event_sampling import resolution_event_samples
 from .spectral import Spectral
@@ -34,6 +53,12 @@ def sbm_clustering(g, deg_corr=False, wait=10, nbreaks=2, beta=np.inf, mcmc_nite
     Returns:
         np.ndarray: cluster labels
     """
+    if gt == "NOT INSTALLED":
+        raise ImportError("The graph-tool module is not installed. SBM clustering unavailable. Use\n\t conda install "+\
+                "-c conda-forge graph-tool\nto install in a conda environment."+\
+                " See https://git.skewed.de/count0/graph-tool/-/wikis/installation-instructions "+\
+                "for help.")
+    
     if not isinstance(g, gt.Graph):
         g = g.to_graph_tool()
 
@@ -45,6 +70,13 @@ def sbm_clustering(g, deg_corr=False, wait=10, nbreaks=2, beta=np.inf, mcmc_nite
     return y_pred
 
 def sbm_clustering_entropy(g, deg_corr=False, wait=10, nbreaks=2, beta=np.inf, mcmc_niter=10):
+    if gt == "NOT INSTALLED":
+        raise ImportError("The graph-tool module is not installed. SBM clustering unavailable. Use\n\t conda install "+\
+                "-c conda-forge graph-tool\nto install in a conda environment."+\
+                " See https://git.skewed.de/count0/graph-tool/-/wikis/installation-instructions "+\
+                "for help.")
+    
+
     if not isinstance(g, gt.Graph):
         g = g.to_graph_tool()
 
