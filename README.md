@@ -9,16 +9,12 @@ Python Package for the creation and analysis of similarity networks.
     ├── AUTHORS.md
     ├── LICENSE
     ├── README.md
-    ├── data
-    │   ├── processed
-    │   └── raw
-    ├── docs
     ├── notebooks
-    ├── scripts 
     └── src/simnet
         ├── clustering
         ├── datasets
         ├── graph
+        ├── plotting
         ├── similarity
         └── utils 
 -->
@@ -52,3 +48,31 @@ The simplest method for python users is to make use of a conda environment, inst
 conda install -c conda-forge graph-tool
 ```
 Note: this will not work on Windows. Alternative (conda independent) solutions can be found on the [Graph Tool Website](https://git.skewed.de/count0/graph-tool/-/wikis/installation-instructions#installing-via-conda)
+
+# Using `simnetpy`
+```Python
+import simnet as sn
+
+# create mixed guassian data with 100 nodes, 2 dimensions and 3 equally sized clusters.
+N = 100
+sizes=np.array([34,33,33])
+d = 2
+dataset = sn.datasets.mixed_multi_guassian(len(sizes), d, N, sizes=sizes)
+
+# calculate pairwise similarity
+S = sn.pairwise_sim(dataset.X, method='euclidean', norm=True)
+
+# Create igraph Igraph from matrix
+gg = phd.network_from_sim_mat(S, method='knn', K=5)
+
+# print graph stats
+print(g.graph_stats())
+
+# cluster
+ylabels = sn.clustering.leiden_clustering(gg, nsamples=20)
+
+# cluster quality
+cqual = clustering.cluster_quality(gg, ylabels)
+print(cqual)
+```
+
