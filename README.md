@@ -1,4 +1,4 @@
-# simnet
+# simnetpy
 
 Python Package for the creation and analysis of similarity networks.
 
