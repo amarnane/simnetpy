@@ -52,6 +52,7 @@ Note: this will not work on Windows. Alternative (conda independent) solutions c
 # Using `simnetpy`
 ```Python
 import simnet as sn
+import numpy as np
 
 # create mixed guassian data with 100 nodes, 2 dimensions and 3 equally sized clusters.
 N = 100
@@ -60,19 +61,27 @@ d = 2
 dataset = sn.datasets.mixed_multi_guassian(len(sizes), d, N, sizes=sizes)
 
 # calculate pairwise similarity
-S = sn.pairwise_sim(dataset.X, method='euclidean', norm=True)
+S = sn.pairwise_sim(dataset.X, metric='euclidean', norm=True)
 
 # Create igraph Igraph from matrix
-gg = phd.network_from_sim_mat(S, method='knn', K=5)
+gg = sn.network_from_sim_mat(S, method='knn', K=10)
 
 # print graph stats
-print(g.graph_stats())
+print(gg.graph_stats())
+
+# true cluster quality
+cqual_ytrue = sn.clustering.cluster_quality(gg, dataset.y)
+print(cqual_ytrue)
 
 # cluster
-ylabels = sn.clustering.leiden_clustering(gg, nsamples=20)
+ylabels = sn.clustering.spectral_clustering(gg, laplacian='lrw')
 
-# cluster quality
-cqual = clustering.cluster_quality(gg, ylabels)
+# cluster accuracy
+cacc = sn.clustering.cluster_accuracy(dataset.y, ylabels)
+print(cacc)
+
+# predicted cluster quality
+cqual = sn.clustering.cluster_quality(gg, ylabels)
 print(cqual)
 ```
 
