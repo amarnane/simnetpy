@@ -30,4 +30,6 @@ from .utils import create_dirs_on_path
 
 from . import datasets
 from . import utils
+from . import plotting
+
 
