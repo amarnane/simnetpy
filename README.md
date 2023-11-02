@@ -22,10 +22,17 @@ Python Package for the creation and analysis of similarity networks.
 
 ## Installation
 
-The source code for this project can be installed using pip. 
+The source code for this project can be installed using `git` and `pip`. 
+Clone repository 
+```
+git clone https://github.com/amarnane/simnetpy.git
+```
+Install with pip
 ```
 pip install .
 ```
+Note: you need to be in the simnetpy directory for above command to work.
+
 To remove the package simply use 
 ```
 pip uninstall simnet
