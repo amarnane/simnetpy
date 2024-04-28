@@ -1,4 +1,5 @@
 site_name: "SimNetPy"
+repo_url: https://github.com/amarnane/simnetpy
 
 nav:
   - Home: index.md
@@ -50,6 +51,7 @@ plugins:
           docstring_section_style: list
 
 markdown_extensions:
+  - admonition
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span

@@ -60,7 +60,7 @@ python setup.py develop -u
 
 ### Graph Tool
 
-There is one dependency that cannot be installed through pip - `Graph-Tool`. This is a result of it's underlying `c++` dependencies.
+There is one dependency that cannot be installed through `pip` - `Graph-Tool`. This is a result of it's underlying `c++` dependencies.
 The simplest method for python users is to make use of a conda environment, install this package using the commands above and install `graph-tool` using `conda-forge`
 
 ```bash
@@ -68,7 +68,7 @@ conda install -c conda-forge graph-tool
 ```
 
 !!! Note 
-    this will not work on Windows. Alternative (conda independent) solutions can be found on the [Graph Tool Website](https://git.skewed.de/count0/graph-tool/-/wikis/installation-instructions#installing-via-conda)
+    This will not work on Windows. Alternative (conda independent) solutions can be found on the [Graph Tool Website](https://git.skewed.de/count0/graph-tool/-/wikis/installation-instructions#installing-via-conda)
 
 ## Using `simnetpy`
 
