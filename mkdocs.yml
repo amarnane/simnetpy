@@ -1,0 +1,59 @@
+site_name: "SimNetPy"
+
+nav:
+  - Home: index.md
+  - 'Reference':
+    - 'Datasets': reference/datasets.md
+    - 'Similarity': reference/similarity.md
+    - 'Graph': reference/graph.md
+    - 'Clustering': reference/clustering.md
+    - 'Plotting': reference/plotting.md
+    - 'Utils': reference/utils.md
+  # - Reference: api.md
+
+theme:
+  name: material  
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep orange
+      accent: deep orange
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep orange
+      accent: deep orange
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+  icon:
+    logo: simple/graphql
+  features:
+      # - navigation.tabs
+      - navigation.sections
+      - navigation.path
+
+plugins:
+- search
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        paths: [src]
+        options:
+          show_submodules: true
+          docstring_section_style: list
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences         
