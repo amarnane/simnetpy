@@ -3,6 +3,7 @@ repo_url: https://github.com/amarnane/simnetpy
 
 nav:
   - Home: index.md
+  - Tutorial: using_simnetpy.ipynb
   - 'Reference':
     - 'Datasets': reference/datasets.md
     - 'Similarity': reference/similarity.md
@@ -10,6 +11,7 @@ nav:
     - 'Clustering': reference/clustering.md
     - 'Plotting': reference/plotting.md
     - 'Utils': reference/utils.md
+
   # - Reference: api.md
 
 theme:
@@ -41,6 +43,7 @@ theme:
 
 plugins:
 - search
+- mkdocs-jupyter
 - mkdocstrings:
     default_handler: python
     handlers:
