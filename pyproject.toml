@@ -30,7 +30,7 @@ classifiers = [
 ]
 dependencies = [
     "click",
-    "igraph",
+    "igraph==0.10.4",
     "matplotlib",
     "numpy",
     "palettable",
