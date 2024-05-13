@@ -45,10 +45,6 @@ To install in developer mode (have changes in source code update without reinsta
 ```
 pip install -e .
 ```
-Note: removing the package is slightly more complicated and a different command is needed to uninstall 
-```
-python setup.py develop -u
-```
 
 ### Graph Tool
 There is one dependency that cannot be installed through pip - `Graph-Tool`. This is a result of it's underlying `c++` dependencies.
