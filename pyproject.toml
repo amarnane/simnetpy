@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -7,7 +7,7 @@ name = "simnetpy"
 dynamic = ["version"]
 description = "Python package for the Construction and Clustering of Similarity Networks"
 readme = "README.md"
-license = "BSD"
+license = "BSD-3-Clause"
 requires-python = ">=3.8"
 authors = [
     { name = "Aidan Marnane", email = "aidan.marnane@gmail.com" },
