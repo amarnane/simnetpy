@@ -1,4 +1,4 @@
 
 ## Utils
 
-::: simnet.utils
+::: simnetpy.utils

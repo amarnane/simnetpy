@@ -1,5 +1,5 @@
 
 ## Clustering
 
-::: simnet.clustering
+::: simnetpy.clustering
     

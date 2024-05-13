@@ -1,4 +1,4 @@
 
 ## Plotting
 
-::: simnet.plotting
+::: simnetpy.plotting

@@ -1,4 +1,4 @@
 
 ## Graph
 
-::: simnet.graph
+::: simnetpy.graph

@@ -1,4 +1,4 @@
 
 ## Datasets
 
-::: simnet.datasets
+::: simnetpy.datasets

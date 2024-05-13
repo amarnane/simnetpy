@@ -2,4 +2,4 @@
 
 ## Similarity
 
-::: simnet.similarity
+::: simnetpy.similarity

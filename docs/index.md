@@ -80,7 +80,7 @@ import numpy as np
 N = 100
 sizes=np.array([34,33,33])
 d = 2
-dataset = sn.datasets.mixed_multi_guassian(len(sizes), d, N, sizes=sizes)
+dataset = sn.datasets.mixed_multi_numeric(len(sizes), d, N, sizes=sizes)
 
 # calculate pairwise similarity
 S = sn.pairwise_sim(dataset.X, metric='euclidean', norm=True)
