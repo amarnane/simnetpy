@@ -4,7 +4,7 @@ Credits
 Project Lead
 ----------------
 
-* Aidan Marnane <a.marnane@ed.ac.uk>
+* Aidan Marnane <aidan.marnane@gmail.com>
 
 Project Contributors
 ------------
