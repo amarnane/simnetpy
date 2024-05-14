@@ -51,7 +51,8 @@ dev = [
 
 [project.urls]
 Download = "https://github.com/amarnane/simnetpy"
-Homepage = "https://amarnane.github.io/simnetpy/"
+Homepage = "https://github.com/amarnane/simnetpy"
+Documentation = "https://amarnane.github.io/simnetpy/"
 
 
 [tool.hatch.build.targets.sdist]
